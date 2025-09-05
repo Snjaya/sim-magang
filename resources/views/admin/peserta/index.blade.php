@@ -46,22 +46,23 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @forelse ($pesertas as $peserta)
                                 <tr>
-                                <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $peserta->user->name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $peserta->nim_nisn }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $peserta->jurusan }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $peserta->asal_sekolah_kampus }}</td>
-                                    <a href="{{ route('peserta.edit', $peserta->id) }}"
-                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{{ route('peserta.edit', $peserta->id) }}"
+                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
 
-                                    <form class="inline-block" action="{{ route('peserta.destroy', $peserta->id) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Anda yakin ingin menghapus data ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="text-red-600 hover:text-red-900 ml-4">Delete</button>
-                                    </form>
+                                        <form class="inline-block" action="{{ route('peserta.destroy', $peserta->id) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Anda yakin ingin menghapus data ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="text-red-600 hover:text-red-900 ml-4">Delete</button>
+                                        </form>
                                     </td>
                                     </td>
                                 </tr>

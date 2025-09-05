@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\PesertaController;
 use App\Http\Controllers\Admin\PembimbingController;
+use App\Http\Controllers\Pembimbing\TugasController;
+use App\Http\Controllers\Peserta\TugasController as PesertaTugasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,14 +24,23 @@ Route::middleware('auth')->group(function () {
 // Rute ini hanya bisa diakses oleh user dengan role 'admin'
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('pembimbing', PembimbingController::class);
-    Route::resource('peserta', PesertaController::class);
+    Route::resource('peserta', PesertaController::class)->parameter('peserta', 'peserta');
 });
 
 // Rute ini hanya bisa diakses oleh user dengan role 'pembimbing'
-Route::middleware(['auth', 'role:pembimbing'])->group(function () {
-    Route::get('/pembimbing/dashboard', function () {
-        return '<h1>Selamat Datang, Pembimbing!</h1>';
-    });
+Route::middleware(['auth', 'role:pembimbing'])->prefix('pembimbing')->group(function () {
+    Route::resource('tugas', TugasController::class)->names('pembimbing.tugas');
+});
+
+// Rute ini hanya bisa diakses oleh user dengan role 'peserta'
+Route::middleware(['auth', 'role:peserta'])->prefix('peserta')->name('peserta.')->group(function () {
+    Route::get('tugas', [PesertaTugasController::class, 'index'])->name('tugas.index');
+
+    // PARAMETER DIUBAH DI SINI
+    Route::get('tugas/{tugas}', [PesertaTugasController::class, 'show'])->name('tugas.show');
+
+    // PARAMETER DIUBAH DI SINI JUGA
+    Route::patch('tugas/{tugas}/submit', [PesertaTugasController::class, 'submit'])->name('tugas.submit');
 });
 
 require __DIR__ . '/auth.php';

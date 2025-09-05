@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Tugas;
 
 class User extends Authenticatable
 {
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -61,5 +64,10 @@ class User extends Authenticatable
     public function peserta(): HasOne
     {
         return $this->hasOne(Peserta::class, 'user_id');
+    }
+
+    public function tugas(): BelongsToMany
+    {
+        return $this->belongsToMany(Tugas::class, 'tugas_user', 'user_id', 'tugas_id');
     }
 }
