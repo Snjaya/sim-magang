@@ -66,8 +66,9 @@ class User extends Authenticatable
         return $this->hasOne(Peserta::class, 'user_id');
     }
 
-    public function tugas(): BelongsToMany
+    public function tasks(): BelongsToMany
     {
-        return $this->belongsToMany(Tugas::class, 'tugas_user', 'user_id', 'tugas_id');
+        // Arahkan ke model Task dan tabel pivot yang baru
+        return $this->belongsToMany(Task::class, 'task_user', 'user_id', 'task_id');
     }
 }

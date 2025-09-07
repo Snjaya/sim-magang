@@ -13,7 +13,7 @@
                 <div class="p-6 text-gray-900">
                     <form method="POST" action="{{ route('pembimbing.update', $pembimbing->id) }}">
                         @csrf
-                        @method('PUT') {{-- PENTING: Method untuk update adalah PUT/PATCH --}}
+                        @method('PUT')
 
                         <div>
                             <x-input-label for="name" :value="__('Nama Lengkap')" />

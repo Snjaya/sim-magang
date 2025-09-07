@@ -12,6 +12,18 @@ class Peserta extends Model
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'user_id',
+        'nama_lengkap',
+        'nim_nisn',
+        'jurusan',
+        'institusi_asal',
+        'status', // Pastikan ini ada
+        'no_hp',
+        'personal_email',
+        'tanggal_mulai',
+        'tanggal_berakhir',
+    ];
     /**
      * Mendefinisikan bahwa satu profil Peserta dimiliki oleh satu User.
      */

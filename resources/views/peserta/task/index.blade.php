@@ -31,23 +31,23 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                @forelse ($tugasList as $tugas)
+                                @forelse ($tasks as $task)
                                     <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $tugas->judul }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $task->judul }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ $tugas->pembimbing->name }}
+                                            {{ $task->pembimbing->name }}
                                         </td>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ \Carbon\Carbon::parse($tugas->tanggal_diberikan)->format('d M Y') }}</td>
+                                            {{ \Carbon\Carbon::parse($task->tanggal_diberikan)->format('d M Y') }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                {{ ucfirst($tugas->status) }}
+                                                {{ ucfirst($task->status) }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('peserta.tugas.show', $tugas->id) }}"
+                                            <a href="{{ route('peserta.task.show', $task->id) }}"
                                                 class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900">Lihat
                                                 Detail & Kerjakan</a>
                                         </td>
@@ -55,7 +55,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="5" class="px-6 py-4 whitespace-nowrap text-center">Anda belum
-                                            memiliki tugas.</td>
+                                            memiliki task.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

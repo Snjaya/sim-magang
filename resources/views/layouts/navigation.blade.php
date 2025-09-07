@@ -25,15 +25,15 @@
 
                     {{-- Jika user adalah pembimbing, tampilkan menu ini --}}
                     @if (Auth::user()->role == 'pembimbing')
-                        <x-nav-link :href="route('pembimbing.tugas.index')" :active="request()->routeIs('pembimbing.tugas.*')">
-                            {{ __('Manajemen Tugas') }}
+                        <x-nav-link :href="route('pembimbing.task.index')" :active="request()->routeIs('pembimbing.task.*')">
+                            {{ __('Manajemen task') }}
                         </x-nav-link>
                     @endif
 
                     {{-- [PERBAIKAN 1] Tambahkan ini untuk peserta di tampilan desktop --}}
                     @if (Auth::user()->role == 'peserta')
-                        <x-nav-link :href="route('peserta.tugas.index')" :active="request()->routeIs('peserta.tugas.*')">
-                            {{ __('Tugas Saya') }}
+                        <x-nav-link :href="route('peserta.task.index')" :active="request()->routeIs('peserta.task.*')">
+                            {{ __('task Saya') }}
                         </x-nav-link>
                     @endif
                 </div>
@@ -106,15 +106,15 @@
             @endif
 
             @if (Auth::user()->role == 'pembimbing')
-                <x-responsive-nav-link :href="route('pembimbing.tugas.index')" :active="request()->routeIs('pembimbing.tugas.*')">
-                    {{ __('Manajemen Tugas') }}
+                <x-responsive-nav-link :href="route('pembimbing.task.index')" :active="request()->routeIs('pembimbing.task.*')">
+                    {{ __('Manajemen task') }}
                 </x-responsive-nav-link>
             @endif
 
             {{-- [PERBAIKAN 2] Ganti komponennya menjadi responsive-nav-link --}}
             @if (Auth::user()->role == 'peserta')
-                <x-responsive-nav-link :href="route('peserta.tugas.index')" :active="request()->routeIs('peserta.tugas.*')">
-                    {{ __('Tugas Saya') }}
+                <x-responsive-nav-link :href="route('peserta.task.index')" :active="request()->routeIs('peserta.task.*')">
+                    {{ __('task Saya') }}
                 </x-responsive-nav-link>
             @endif
         </div>
