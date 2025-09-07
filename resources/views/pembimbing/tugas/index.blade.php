@@ -50,22 +50,33 @@
                                             @endforeach
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
+                                            @php
+                                                $statusColor =
+                                                    [
+                                                        'diberikan' => 'bg-gray-100 text-gray-800',
+                                                        'verifikasi' => 'bg-yellow-100 text-yellow-800',
+                                                        'revisi' => 'bg-red-100 text-red-800',
+                                                        'selesai' => 'bg-green-100 text-green-800',
+                                                        'dikerjakan' => 'bg-blue-100 text-blue-800',
+                                                    ][$tugas->status] ?? 'bg-gray-100 text-gray-800';
+                                            @endphp
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusColor }}">
                                                 {{ ucfirst($tugas->status) }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('pembimbing.tugas.edit', $tugas->id) }}"
-                                                class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900">Edit</a>
-                                            <form class="inline-block"
-                                                action="{{ route('pembimbing.tugas.destroy', $tugas->id) }}"
-                                                method="POST" onsubmit="return confirm('Yakin hapus tugas ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-red-600 dark:text-red-400 hover:text-red-900 ml-4">Delete</button>
-                                            </form>
+                                            @if ($tugas->status == 'verifikasi')
+                                                <a href="{{ route('pembimbing.tugas.show', $tugas->id) }}"
+                                                    class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 font-bold">
+                                                    Verifikasi Sekarang
+                                                </a>
+                                            @else
+                                                <a href="{{ route('pembimbing.tugas.show', $tugas->id) }}"
+                                                    class="text-gray-600 dark:text-gray-400 hover:text-gray-900">
+                                                    Lihat Detail
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

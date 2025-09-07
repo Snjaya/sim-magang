@@ -30,6 +30,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 // Rute ini hanya bisa diakses oleh user dengan role 'pembimbing'
 Route::middleware(['auth', 'role:pembimbing'])->prefix('pembimbing')->group(function () {
     Route::resource('tugas', TugasController::class)->names('pembimbing.tugas');
+
+    Route::patch('tugas/{tugas}/verify', [TugasController::class, 'verify'])->name('pembimbing.tugas.verify');
 });
 
 // Rute ini hanya bisa diakses oleh user dengan role 'peserta'

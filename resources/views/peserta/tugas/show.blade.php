@@ -29,10 +29,6 @@
                 <div class="max-w-xl">
                     @if ($tugas->status == 'diberikan')
                         <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">Form Pengumpulan Tugas</h3>
-
-                        {{-- ====================================================================== --}}
-                        {{-- PERHATIKAN `enctype` DI SINI, INI ADALAH KUNCI PERBAIKANNYA --}}
-                        {{-- ====================================================================== --}}
                         <form method="POST" action="{{ route('peserta.tugas.submit', $tugas->id) }}"
                             class="mt-6 space-y-6" enctype="multipart/form-data">
                             @csrf

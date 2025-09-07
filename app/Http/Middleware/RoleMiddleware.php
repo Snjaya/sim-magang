@@ -17,6 +17,7 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
+        dd('Middleware berjalan', 'Role yang dibutuhkan:', $role, 'Role Anda:', $request->user()->role);
         // Cek jika role user yang sedang login tidak sama dengan role yang diizinkan
         if ($request->user()->role !== $role) {
             // Jika tidak cocok, arahkan kembali ke halaman dashboard
